@@ -3,7 +3,7 @@ get '/' do
   erb :index
 end
 
-get '/profile' do
+get '/dashboard' do
 
   erb :'/dashboard/show.erb'
 end
