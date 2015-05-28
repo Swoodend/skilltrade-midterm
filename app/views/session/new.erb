@@ -1,0 +1,22 @@
+<h1>Login to your Account</h1>
+<hr/>
+
+<% if @user.nil? %>
+  <div>
+    <li> There is no account with that credentials</li>
+  </div>
+<% end %>
+
+<form method="post" action="/session/new">
+  <div>
+    <label>email:</label>
+    <input type="text" name="email" value="<%= @email %>">
+  </div>
+  <div>
+    <label>password:</label>
+    <input type="password" name="password" >
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>
