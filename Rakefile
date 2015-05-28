@@ -1,6 +1,8 @@
 require 'rake'
 require "sinatra/activerecord/rake"
+require 'active_record'
 require ::File.expand_path('../config/environment', __FILE__)
+require "./db/seed/users_importer"
 
 Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
@@ -19,4 +21,15 @@ end
 desc 'Retrieves the current schema version number'
 task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
+end
+
+desc 'populate the database with seed data'
+task 'db:populate' do
+  UsersImporter.import
+end
+
+desc 'delete/create/migrate the database'
+task 'db:empty' do
+  rm_f 'db/db.sqlite3'
+  touch 'db/db.sqlite3'
 end
