@@ -33,3 +33,5 @@ VALUES(4, 2, 1, 'teachable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO RELATIONSHIPS(id, users_id, skills_id, type, created_at, updated_at) 
 VALUES(5, 3, 2, 'learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+-- test
