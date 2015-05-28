@@ -12,7 +12,7 @@
   </div>
 <% end %>
 
-<form method="post" action="/users/register">
+<form method="post" action="/users/new">
   <div>
     <label>username:</label>
     <input type="text" name="username" value="<%= @user.username %>">
@@ -23,7 +23,7 @@
   </div>
   <div>
     <label>password:</label>
-    <input type="text" name="password" value="<%= @user.password %>">
+    <input type="text" name="password">
   </div>
   <div>
     <input type="submit" value="Submit">

@@ -18,7 +18,28 @@
           SkillSwapr
         </a>
       </div>
-    
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <p class="navbar-text">
+            Logged in as: <%= current_user.email %>
+          </p>
+          <li>
+            <button type="button" class="btn btn-default navbar-btn">
+             <a href="/logout">
+                Logout
+              </a>
+            </button>
+          </li>
+        <% else %>
+          <li>
+            <button type="button" class="btn btn-success navbar-btn">
+              <a href="/session/new">
+                Login
+             </a>
+            </button>
+          </li>  
+        <% end %>
+      </ul>    
     </div>
   </nav>
   <%= yield %>

@@ -7,14 +7,14 @@
   </div>
 <% end %>
 
-<form method="post" action="/users/login">
+<form method="post" action="/session/new">
   <div>
     <label>email:</label>
     <input type="text" name="email" value="<%= @email %>">
   </div>
   <div>
     <label>password:</label>
-    <input type="text" name="password" >
+    <input type="password" name="password" >
   </div>
   <div>
     <input type="submit" value="Submit">

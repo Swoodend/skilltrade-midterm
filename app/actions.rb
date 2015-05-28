@@ -1,61 +1,67 @@
 require 'byebug'
 # Homepage (Root path)
 get '/' do
-  erb :index
+  # if logged_in?
+  #   erb :'dashboard/show'
+  # else
+    erb :index
+  # end
 end
 
-get '/users/register' do
+get '/users/new' do
   @user = User.new
-  erb :'users/register'
+  erb :'users/new'
 end
 
-post '/users/register' do
+post '/users/new' do
   @user = User.new(
     username: params[:username],
     email: params[:email],
     password: params[:password]
     )
   if @user.save
+    session[:user_id] = @user.id
     redirect '/'
   else
-    erb :'users/register'
+    erb :'users/new'
   end
 end
 
-get '/users/login' do
+get '/session/new' do
   @user = User.new
-  erb :'users/login'
+  erb :'session/new'
 end
 
-post '/users/login' do
+post '/session/new' do
   @user = User.find_by(
     email: params[:email],
     password: params[:password]
     )
   if @user
-    # session[:user_id] = @user.id
+    session[:user_id] = @user.id
     redirect '/'
   else
     @email = params[:email] || ""
-    erb :'users/login'
+    erb :'session/new'
   end
 end 
 
-# get '/users/logout' do
-#   session[:user_id] = nil
-#   redirect '/'
-# end
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/'
+end
 
-# helpers do
-#   def current_user
-#     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-#   end
-# end
+helpers do
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 
-get '/users/profile' do
+  def logged_in?
+    current_user
+  end
+end
+
+get '/profile' do
   erb :'users/profile/'
 end
 
-get '/search' do
-  erb :'search'
-end
