@@ -1,4 +1,3 @@
-require 'byebug'
 # Homepage (Root path)
 get '/' do
   # if logged_in?
@@ -63,5 +62,10 @@ end
 
 get '/profile' do
   erb :'users/profile/'
+end
+
+get '/users/index' do
+  @users = User.all
+  erb :'/users/index'
 end
 
