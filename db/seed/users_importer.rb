@@ -1,11 +1,6 @@
 class UsersImporter
 
-  def initialize(filename=File.dirname(__FILE__) + "/db/seed_data.sql")
-    @filename = filename
-  end
-
-  def import
-    puts "importing students from #{@filename}"
+  def self.import
 
     database = ActiveRecord::Base.establish_connection(
       adapter: 'sqlite3',

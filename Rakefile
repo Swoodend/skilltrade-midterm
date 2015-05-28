@@ -2,7 +2,7 @@ require 'rake'
 require "sinatra/activerecord/rake"
 require 'active_record'
 require ::File.expand_path('../config/environment', __FILE__)
-require "./lib/users_importer"
+require "./db/seed/users_importer"
 
 Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
@@ -25,5 +25,11 @@ end
 
 desc 'populate the database with seed data'
 task 'db:populate' do
-  UsersImporter.new.import
+  UsersImporter.import
+end
+
+desc 'delete/create/migrate the database'
+task 'db:empty' do
+  rm_f 'db/db.sqlite3'
+  touch 'db/db.sqlite3'
 end
