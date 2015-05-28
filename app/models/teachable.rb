@@ -1,0 +1,3 @@
+class Teachable < Relationship
+
+end

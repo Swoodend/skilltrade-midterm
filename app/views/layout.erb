@@ -1,23 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
-  <link rel="stylesheet" href="/stylesheets/normalize.css">
-  <!--
-    application.css is where you put your styles
-  -->
-  <link rel="stylesheet" href="/stylesheets/application.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/javascript/application.js"></script>
 
-  <title></title>
+  <title>SkillSwapr</title>
 </head>
 <body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <i class="fa fa-music"></i>
+          Music Wall
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+<!--       < if current_user %>
+                  <p class="navbar-text">
+                    Logged in as: <%= current_user.email %>
+                  </p>
+                <li>
+                  <button type="button" class="btn btn-default navbar-btn">
+                    <a href="/sign-out">
+                      Sign Out
+                    </a>
+                  </button>
+                </li>
+              < else %>
+                <li>
+                  <button type="button" class="btn btn-success navbar-btn">
+                    <a href="/sign-in">
+                      Sign in
+                    </a>
+                  </button>
+                </li>  
+              < end %> -->
+      </ul>
+    </div>
+  </nav>
+
   <%= yield %>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="/stylesheets/flat-ui.min.css"> -->
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/stylesheets/application.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/music_wall.css"> -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/javascript/application.js"></script>
+
+  <title>Music Wall</title>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <i class="fa fa-music"></i>
+          Music Wall
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+       <!--  <li>
+          <form class="navbar-form" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" value="<%= @search %>" placeholder="Search">
+            </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </li> -->
+
+              <% if current_user %>
+                  <p class="navbar-text">
+                    Logged in as: <%= current_user.email %>
+                  </p>
+                <li>
+                  <button type="button" class="btn btn-default navbar-btn">
+                    <a href="/sign-out">
+                      Sign Out
+                    </a>
+                  </button>
+                </li>
+              <% else %>
+                <li>
+                  <button type="button" class="btn btn-success navbar-btn">
+                    <a href="/sign-in">
+                      Sign in
+                    </a>
+                  </button>
+                </li>  
+              <% end %>
+      </ul>
+    </div>
+  </nav>
+      <%= yield %>
 </body>
 </html>
