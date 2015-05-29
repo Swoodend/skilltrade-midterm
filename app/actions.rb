@@ -65,7 +65,11 @@ get '/profile' do
 end
 
 get '/users/index' do
-  @users = User.where(username: params[:query])
+  if params[:username_search]
+    @users = User.where(username: params[:query])
+  else params[:skill_search] 
+    @skills = User.all.teachable_skills.find_by(name: params[:query])
+  end
   erb :'/users/index'
 end
 
@@ -73,6 +77,8 @@ get '/users/:id' do
   @user = User.find_by(id: params[:id])
   erb :'users/show'
 end
+
+# user.teachable_skills.find_by(name: "plumbing").name
 
 get '/dashboard' do
   if current_user
