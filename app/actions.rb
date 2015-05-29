@@ -80,20 +80,10 @@ get '/users/index' do
   erb :'/users/index'
 end
 
-    users_with_skills = []
-    User.all.each do |user|
-      user.teachable_skills.find_by(name: "plumbing")
-    end
-    @skills = users_with_skills
-
-
-
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
   erb :'users/show'
 end
-
-# user.teachable_skills.find_by(name: "plumbing").name
 
 get '/dashboard' do
   if current_user
