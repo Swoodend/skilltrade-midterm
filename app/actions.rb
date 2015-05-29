@@ -67,9 +67,8 @@ end
 get '/users/index' do
   if params[:search_by] == "username"
     @users = User.where(username: params[:query])
-  else
+  elsif params[:search_by] == "skill"
     id_of_skill = Skill.where(name: params[:query])[0].id
-    id_of_skill.id
     user_ids = Relationship.where(skill_id: id_of_skill).map &:user_id
     @users = []
     user_ids.each do |id|
