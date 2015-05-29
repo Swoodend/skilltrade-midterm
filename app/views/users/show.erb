@@ -6,12 +6,12 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Looking to Learn</th>
-    <th>Capable of Teaching</th>
+    <th>Member Since</th>
   </tr>
   <tr>
     <th><%=@user.username%></th>
     <th><%=@user.email%></th>
+    <th><%=@user.created_at.year%></th>
   </tr>
 
 </table>
