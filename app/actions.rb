@@ -61,7 +61,7 @@ helpers do
 end
 
 get '/profile' do
-  erb :'users/profile/'
+  erb :'users/profile'
 end
 
 get '/users/index' do
@@ -73,3 +73,17 @@ get '/users/:id' do
   @user = User.find_by(id: params[:id])
   erb :'users/show'
 end
+
+get '/dashboard' do
+  if current_user
+    # byebug
+    @current_user = current_user 
+    @skills = Skill.all
+    @num_of_users = User.count
+    byebug
+    erb :'dashboard/show'
+  else
+    redirect 'session/new'
+  end
+end
+
