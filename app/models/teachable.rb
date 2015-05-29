@@ -1,3 +1,2 @@
 class Teachable < Relationship
-
 end
