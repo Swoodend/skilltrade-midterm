@@ -65,13 +65,28 @@ get '/profile' do
 end
 
 get '/users/index' do
-  if params[:username_search]
+  if params[:search_by] == "username"
     @users = User.where(username: params[:query])
-  else params[:skill_search] 
-    @skills = User.all.teachable_skills.find_by(name: params[:query])
+  else
+    id_of_skill = Skill.where(name: params[:query])[0].id
+    id_of_skill.id
+    user_ids = Relationship.where(skill_id: id_of_skill).map &:user_id
+    @users = []
+    user_ids.each do |id|
+      @users << User.find(id)
+    end
+    @users
   end
   erb :'/users/index'
 end
+
+    users_with_skills = []
+    User.all.each do |user|
+      user.teachable_skills.find_by(name: "plumbing")
+    end
+    @skills = users_with_skills
+
+
 
 get '/users/:id' do
   @user = User.find_by(id: params[:id])
