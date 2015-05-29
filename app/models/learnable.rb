@@ -1,3 +1,2 @@
 class Learnable < Relationship
-
 end

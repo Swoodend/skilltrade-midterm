@@ -33,3 +33,11 @@ task 'db:empty' do
   rm_f 'db/db.sqlite3'
   touch 'db/db.sqlite3'
 end
+
+desc 'drop/create/migrate/populate'
+task 'db:nuke_and_populate' do
+  rm_f 'db/db.sqlite3'
+  Rake::Task["db:create"]
+  Rake::Task["db:migrate"]
+  UsersImporter.import
+end  
