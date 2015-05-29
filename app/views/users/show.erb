@@ -1,28 +1,26 @@
-<h1><%=@user.username%>'sProfile<h1>
+<div class='row'>
 
+<div class='col-sm-4'>
+    <h1><%=@user.username%>'s Profile</h1>
 
-<table border='1'>
-  
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Interested in Learning</th>
-    <th>Interested in Teaching</th>
-    <th>Member Since</th>
-  </tr>
-  
-  <tr>
-    <td><%= @user.username%></td>
-    <td><%= @user.email%></td>
-    <td><% @user.teachable_skills.each{|skill|  %>
-      <div><%= skill.name%></div>
+    <img id="" src='https://www.colourbox.com/preview/4057996-business-person-holding-document-file.jpg'/>
+    <h3>About</h3>
+    <p>blurb about <%=@user.username%> goes here</p>
+  </div>
 
-      <% } %></td>
-    <td><% @user.learnable_skills.each{|skill| %>
-      <div><%= skill.name%></div> 
-      <% }%></td>
-    <td><%= @user.created_at.year%></td>
-  </tr>
+  <div class='col-sm-8'>
+    <h2><%= @user.username %> wants to learn</h2>
+    <ul>
+      <% @user.learnable_skills.each{|skill| %>
+      <li><%= skill.name %></li>
+      <% } %>
+    </ul>
 
-</table>
-
+    <h2><%= @user.username %> wants to teach</h2>
+    <ul>
+      <% @user.teachable_skills.each{|skill| %>
+      <li> <%= skill.name%></li>
+      <% } %>
+    </ul>
+  </div>
+</div>
