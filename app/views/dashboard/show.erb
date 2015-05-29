@@ -1,6 +1,5 @@
 <h1> Welcome <%= @user.username %> to your awesome dashboard </h1>
-</br>
-
+<a href="/users/index"> Click here to browse and search></a>
 <h3> Skillswapr currently has <%= User.count %> members</h3></br>
 <h3> Your skills are : <%= @user.teachable_skills.map &:name %></h3></br>
 <h3> And you want to learn: <%= @user.learnable_skills.map &:name %></h3></br>
