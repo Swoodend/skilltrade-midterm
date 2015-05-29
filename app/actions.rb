@@ -21,7 +21,7 @@ post '/users/new' do
     )
   if @user.save
     session[:user_id] = @user.id
-    redirect '/'
+    redirect '/dashboard'
   else
     erb :'users/new'
   end
