@@ -77,7 +77,7 @@ end
 
 get '/dashboard' do
   if current_user
-    @user = current_user 
+    @user = current_user
     erb :'dashboard/show'
   else
     redirect 'session/new'
