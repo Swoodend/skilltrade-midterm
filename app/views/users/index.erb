@@ -13,8 +13,8 @@
 
 <ul class="list-group">
   <% @users.each do |user| %>
-    <% teach_skills = user.teachable_skills.map { |skill| skill.name } %>
-    <% learn_skills = user.learnable_skills.map { |skill| skill.name } %>
+    <% teach_skills = user.teachable_skills.map &:name %>
+    <% learn_skills = user.learnable_skills.map &:name %>
     <li class="list-group-item">
       <div class="row">
         <div class="col-sm-1">
@@ -22,11 +22,15 @@
         <div class="col-sm-11">
           <div class="">
             <p><strong>Username: </strong><a href="<%= user.id %>" target="_blank"><%= user.username %></a></p>
-            <p><strong>Learnables: </strong><%= learn_skills.sort.join(", ") %></a></p>
-            <p><strong>Teachables: </strong><%= teach_skills.sort.join(", ") %></a></p>
+            <p><strong>Learnables: </strong><% learn_skills.sort.map do |skill| %>
+            <%= skill.capitalize + (", ") %>
+            <% end %></a></p>
+            <p><strong>Teachables: </strong><% teach_skills.sort.map do |skill| %>
+              <%= skill.capitalize + (', ') %>
+            <% end %></a></p>
           </div>
         </div>
-      </div>              
+      </div>
     </li>
   <% end %>
 </ul>
