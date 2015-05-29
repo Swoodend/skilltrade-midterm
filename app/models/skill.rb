@@ -1,4 +1,5 @@
 class Skill < ActiveRecord::Base
-  valdiates :name, presence: true
+
+  validates :name, presence: true
 
 end

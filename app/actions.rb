@@ -65,7 +65,7 @@ get '/profile' do
 end
 
 get '/users/index' do
-  @users = User.all
+  @users = User.where(username: params[:query])
   erb :'/users/index'
 end
 
@@ -76,7 +76,6 @@ end
 
 get '/dashboard' do
   if current_user
-    # byebug
     @current_user = current_user 
     @skills = Skill.all
     @num_of_users = User.count
