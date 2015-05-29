@@ -43,6 +43,15 @@ class UsersImporter
     database.connection.execute("INSERT INTO RELATIONSHIPS(id, user_id, skill_id, type, created_at, updated_at) 
       VALUES(5, 3, 2, 'Learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);")
 
+    database.connection.execute("INSERT INTO RELATIONSHIPS(id, user_id, skill_id, type, created_at, updated_at) 
+      VALUES(6, 1, 2, 'Learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);")
+
+    database.connection.execute("INSERT INTO RELATIONSHIPS(id, user_id, skill_id, type, created_at, updated_at) 
+      VALUES(7, 1, 3, 'Learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);")
+
+    database.connection.execute("INSERT INTO RELATIONSHIPS(id, user_id, skill_id, type, created_at, updated_at) 
+      VALUES(8, 1, 4, 'Learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);")
+
   end
 
 end

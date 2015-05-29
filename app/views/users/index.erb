@@ -1,41 +1,32 @@
-<form role='search' method='get'>
-  
-  <div align='center'>
-    
-    <input type='text' name='query' placeholder='Enter a skill to learn' size='45'>
-    <button type="button" class="btn btn-primary">Search</button>
-
-  </div>
-
-</form>
-
-<div class="container">
-  <div class="row">
-    <h1> Users </h1>
-    </hr>
-    <div> 
-        <form class="navbar-form" role="search" method="get">
-          <div class="form-group">
-            <input type="text" class="form-control" name="query" value="<%= @search %>" placeholder="Search">
-          </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+<div class="container" align="centre">
+  <form role="search" method="get">
+    <div class="form-group">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" name="query" placeholder="Enter a skill" >
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
     </div>
-    <ul class="list-group">
-        <% @users.all.each do |user| %>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-sm-1">
-              </div>
-              <div class="col-sm-11">
-                <div class="">
-                  <p><strong>Username: </strong><a href="<%= user.id %>" target="_blank"><%= user.username %></a></p>
-                  <p><strong>Learnables: </strong><%= user.teachables %></a></p>
-                </div>
-              </div>
-            </div>              
-          </li>
-        <% end %>
-    </ul>
-  </div>
+  </form>
 </div>
+
+<ul class="list-group">
+  <% @users.each do |user| %>
+    <% teach_skills = user.teachable_skills.map { |skill| skill.name } %>
+    <% learn_skills = user.learnable_skills.map { |skill| skill.name } %>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-11">
+          <div class="">
+            <p><strong>Username: </strong><a href="<%= user.id %>" target="_blank"><%= user.username %></a></p>
+            <p><strong>Learnables: </strong><%= learn_skills.sort.join(", ") %></a></p>
+            <p><strong>Teachables: </strong><%= teach_skills.sort.join(", ") %></a></p>
+          </div>
+        </div>
+      </div>              
+    </li>
+  <% end %>
+</ul>
