@@ -24,7 +24,10 @@ class User < ActiveRecord::Base
   end
 
   def find_my_students
-    User.joins(teachables: {skills: {learnables: :users}}).where("users_relationships.id = ?", id)
+    User.joins(teachables: {skill: {learnables: :user}}).where("users_relationships.id = ?", id)
+  end
+
+  def match_my_skills_to_user(user)
   end
 
 end
