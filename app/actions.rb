@@ -71,7 +71,7 @@ get '/dashboard' do
     @current_user = current_user 
     @skills = Skill.all
     @num_of_users = User.count
-    # @relationships = Relationship.all
+    byebug
     erb :'dashboard/show'
   else
     redirect 'session/new'
