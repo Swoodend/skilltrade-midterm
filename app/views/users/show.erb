@@ -1,6 +1,5 @@
-<h1><%=user.username%><h1>
+<h1><%=@user.username%>'sProfile<h1>
 
-<!-- <h1><%=@user.username %></h1> -->
 
 <table border='1'>
   
@@ -19,7 +18,9 @@
       <div><%= skill.name%></div>
 
       <% } %></td>
-    <td><%= @user.learnable_skills.map{|skill| skill.name}.join(' ')%></td> 
+    <td><% @user.learnable_skills.each{|skill| %>
+      <div><%= skill.name%></div> 
+      <% }%></td>
     <td><%= @user.created_at.year%></td>
   </tr>
 
