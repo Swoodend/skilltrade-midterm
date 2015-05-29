@@ -1,3 +1,4 @@
+require 'byebug'
 # Homepage (Root path)
 get '/' do
   # if logged_in?
@@ -76,10 +77,7 @@ end
 
 get '/dashboard' do
   if current_user
-    @current_user = current_user 
-    @skills = Skill.all
-    @num_of_users = User.count
-    byebug
+    @user = current_user 
     erb :'dashboard/show'
   else
     redirect 'session/new'
