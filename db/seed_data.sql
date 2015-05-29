@@ -20,16 +20,16 @@ INSERT INTO SKILLS(id, name, created_at, updated_at)
 VALUES(4, 'surfing', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO RELATIONSHIPS(id, users_id, skills_id, type, created_at, updated_at) 
-VALUES(1, 1, 1, 'learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES(1, 1, 1, 'Learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO RELATIONSHIPS(id, users_id, skills_id, type, created_at, updated_at) 
-VALUES(2, 1, 2, 'teachable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES(2, 1, 2, 'Teachable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO RELATIONSHIPS(id, users_id, skills_id, type, created_at, updated_at)  
-VALUES(3, 2, 2, 'learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES(3, 2, 2, 'Learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO RELATIONSHIPS(id, users_id, skills_id, type, created_at, updated_at) 
-VALUES(4, 2, 1, 'teachable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES(4, 2, 1, 'Teachable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 INSERT INTO RELATIONSHIPS(id, users_id, skills_id, type, created_at, updated_at) 
-VALUES(5, 3, 2, 'learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+VALUES(5, 3, 2, 'Learnable', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
