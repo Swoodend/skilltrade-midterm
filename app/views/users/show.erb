@@ -1,3 +1,17 @@
 <h1>Search Results<h1>
 
-<h1><%=@user.username %></h1>
+<!-- <h1><%=@user.username %></h1> -->
+
+<table border='1'>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Looking to Learn</th>
+    <th>Capable of Teaching</th>
+  </tr>
+  <tr>
+    <th><%=@user.username%></th>
+    <th><%=@user.email%></th>
+  </tr>
+
+</table>
