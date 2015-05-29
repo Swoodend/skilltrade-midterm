@@ -1,17 +1,27 @@
-<h1>Search Results<h1>
+<h1><%=user.username%><h1>
 
 <!-- <h1><%=@user.username %></h1> -->
 
 <table border='1'>
+  
   <tr>
     <th>Name</th>
     <th>Email</th>
+    <th>Interested in Learning</th>
+    <th>Interested in Teaching</th>
     <th>Member Since</th>
   </tr>
+  
   <tr>
-    <th><%=@user.username%></th>
-    <th><%=@user.email%></th>
-    <th><%=@user.created_at.year%></th>
+    <td><%= @user.username%></td>
+    <td><%= @user.email%></td>
+    <td><% @user.teachable_skills.each{|skill|  %>
+      <div><%= skill.name%></div>
+
+      <% } %></td>
+    <td><%= @user.learnable_skills.map{|skill| skill.name}.join(' ')%></td> 
+    <td><%= @user.created_at.year%></td>
   </tr>
 
 </table>
+

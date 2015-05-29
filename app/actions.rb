@@ -80,6 +80,7 @@ get '/dashboard' do
     @skills = Skill.all
     @num_of_users = User.count
     byebug
+    @user = current_user 
     erb :'dashboard/show'
   else
     redirect 'session/new'
