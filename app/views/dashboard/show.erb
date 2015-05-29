@@ -1,5 +1,21 @@
 <h1> Welcome <%= @current_user.username %> to your awesome dashboard </h1>
 </br>
 
-<h3> Skillswapr currently has <%= @num_of_users %> members
-and <%= @skills.count %> skills available </h3></br>
+<h3> Skillswapr currently has <%= User.count %> members</h3></br>
+<h3> Your skills are : <%= @user.teachable_skills.map &:name %></h3></br>
+<h3> And you want to learn: <%= @user.learnable_skills.map &:name %></h3></br>
+
+logic for users who have the teachables that match your learnables
+
+For each of your teachable skills (ID), 
+search the relationships table for all skill IDs that match yours but type is learnable
+Get the users for all matches
+
+Find all the learners where the skill id is equal "teachable_skill_ids"
+
+SELECT user_id FROM relationships WHERE skill_id = 
+
+User.first.teachables.skill_id
+
+
+logic for users who have your learnables that match your teachables
