@@ -23,10 +23,6 @@ task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
 
-desc 'populate the database with seed data'
-task 'db:populate' do
-  UsersImporter.import
-end
 
 desc 'delete/create/migrate the database'
 task 'db:empty' do
@@ -34,10 +30,3 @@ task 'db:empty' do
   touch 'db/db.sqlite3'
 end
 
-desc 'drop/create/migrate/populate'
-task 'db:nuke_and_populate' do
-  rm_f 'db/db.sqlite3'
-  Rake::Task["db:create"]
-  Rake::Task["db:migrate"]
-  UsersImporter.import
-end  
