@@ -1,10 +1,41 @@
-<h1> Welcome <%= @user.username %> to your awesome dashboard </h1>
-</br>
+<div>
+  <a class="btn btn-primary" style ="float: right" href="/users/index" role="button">Search Page</a>
+  <h1> <strong> Welcome <%= @user.username %> to your awesome dashboard </strong> </h1>
+</div>
 
-<a href="/users/index"> Click here to browse and search></a>
-<h3> Skillswapr currently has <%= User.count %> members</h3></br>
-<h3> Your skills are : <%= @user.teachable_skills.map &:name %></h3></br>
-<h3> And you want to learn: <%= @user.learnable_skills.map &:name %></h3></br>
+<div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span class="badge"><%= User.count %></span>
+      Skillswapr members online
+    </li>
+  </ul>
+</div>
+
+<div>
+  
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-md-1">
+      <strong>You want to teach: </strong>
+      </div>
+      <div class="col-md-2">
+        <div class="">
+         
+         <span class="label label-success"><%= (@user.teachable_skills.map &:name).join(" ") %></span>
+        </div>
+        <div>
+         <strong>You want to learn: </strong>
+         <span class="label label-success"><%= (@user.learnable_skills.map &:name).join(" ") %></span>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+  <h3> And you want to learn: <%= @user.learnable_skills.map &:name %></h3>
+<div>
 
 </br>
 
