@@ -1,4 +1,3 @@
-require 'byebug'
 # Homepage (Root path)
 get '/' do
   # if logged_in?
@@ -21,7 +20,7 @@ post '/users/new' do
     )
   if @user.save
     session[:user_id] = @user.id
-    redirect '/'
+    redirect '/dashboard'
   else
     erb :'users/new'
   end
@@ -65,8 +64,18 @@ get '/profile' do
   erb :'users/profile'
 end
 
-get '/users' do #
-  @users = User.where(username: params[:query])
+get '/users' do
+  if params[:search_by] == "username"
+    @users = User.where(username: params[:query])
+  elsif params[:search_by] == "skill"
+    id_of_skill = Skill.where(name: params[:query])[0].id
+    user_ids = Relationship.where(skill_id: id_of_skill).map &:user_id
+    @users = []
+    user_ids.each do |id|
+      @users << User.find(id)
+    end
+    @users
+  end
   erb :'/users/index'
 end
 
@@ -77,6 +86,7 @@ end
 
 get '/dashboard' do
   if current_user
+    @current_user = current_user 
     @user = current_user
     erb :'dashboard/show'
   else
