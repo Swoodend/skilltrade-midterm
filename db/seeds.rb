@@ -31,12 +31,6 @@ skills.each do |skill|
   skill_list << Skill.create(name: skill)
 end
 
-# #Give some users teachables
-# (NUMBER_OF_USERS * 2).times do
-#   Teachable.create(user: users_list.sample, skill: skill_list.sample)
-# end
-
-
 User.all.each do |user|
   teach = []
   learn = []
@@ -49,7 +43,7 @@ User.all.each do |user|
       learn << skill
     end
   end
-  
+
   teach.each do |skill|
     Teachable.create(user: user, skill: skill)
   end
@@ -59,9 +53,3 @@ User.all.each do |user|
   end
 
 end
-
-# #give some users learnables
-
-# (NUMBER_OF_USERS * 2).times do
-  
-# end
