@@ -12,14 +12,14 @@
     <h2><%= @user.username %> wants to learn</h2>
     <ul>
       <% @user.learnable_skills.each{|skill| %>
-      <li><%= skill.name %></li>
+      <li><span class="label label-success"><%= skill.name %></span></li>
       <% } %>
     </ul>
 
     <h2><%= @user.username %> wants to teach</h2>
     <ul>
       <% @user.teachable_skills.each{|skill| %>
-      <li> <%= skill.name%></li>
+      <li> <span class="label label-info"><%= skill.name%></span></li>
       <% } %>
     </ul>
   </div>
