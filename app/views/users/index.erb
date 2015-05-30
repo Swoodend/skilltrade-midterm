@@ -26,49 +26,31 @@
     </div>
 </form>
 <ul class="list-group">
-  <% if params[:query] %>
-      <% @users.each do |user| %>
-        <% teach_skills = user.teachable_skills.map &:name %>
-        <% learn_skills = user.learnable_skills.map &:name %>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-1">
-            </div>
-            <div class="col-md-11">
-              <div class="">
-                <p><strong>Username: </strong><a href="<%= user.id %>" target="_blank"><%= user.username %></a></p>
-                <p><strong>Learnables: </strong><% learn_skills.sort.each do |skill| %>
-                  <span class="label label-success"><%= skill.capitalize %></span>
-                <% end %></a></p>
-                <p><strong>Teachables: </strong><% teach_skills.sort.each do |skill| %>
-                  <span class="label label-info"><%= skill.capitalize %></span>
-                <% end %></a></p>
-              </div>
-            </div>
-          </div>
-        </li>
-      <% end %>
+  <% if params[:query]  %>
+    <% list = @users %>
   <% else %>
-    <% User.all.each do |user| %>
-      <% teach_skills = user.teachable_skills.map &:name %>
-      <% learn_skills = user.learnable_skills.map &:name %>
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-11">
-            <div class="">
-              <p><strong>Username: </strong><a href="<%= user.id %>" target="_blank"><%= user.username %></a></p>
-              <p><strong>Learnables: </strong><% learn_skills.sort.map do |skill| %>
-              <span class="label label-info"><%= skill.capitalize %></span>
-              <% end %></a></p>
-              <p><strong>Teachables: </strong><% teach_skills.sort.map do |skill| %>
-               <span class="label label-info"><%= skill.capitalize %></span>
-              <% end %></a></p>
-            </div>
-          </div>
-        </div>
-      </li>
-    <% end %>
+    <% list = User.all %>
   <% end %>
+
+<% list.each do |user| %>
+  <% teach_skills = user.teachable_skills.map &:name %>
+  <% learn_skills = user.learnable_skills.map &:name %>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-11">
+        <div class="">
+          <p><strong>Username: </strong><a href="<%= user.id %>" target="_blank"><%= user.username %></a></p>
+          <p><strong>Learnables: </strong><% learn_skills.sort.each do |skill| %>
+            <span class="label label-success"><%= skill.capitalize %></span>
+          <% end %></a></p>
+          <p><strong>Teachables: </strong><% teach_skills.sort.each do |skill| %>
+            <span class="label label-info"><%= skill.capitalize %></span>
+          <% end %></a></p>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>
 </ul>
