@@ -65,7 +65,7 @@ get '/profile' do
   erb :'users/profile'
 end
 
-get '/users/index' do
+get '/users' do #
   @users = User.where(username: params[:query])
   erb :'/users/index'
 end
