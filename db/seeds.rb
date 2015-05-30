@@ -2,9 +2,10 @@ require 'faker'
 #Configuration for seed file
 
 NUMBER_OF_USERS = 30
-skills = %w(programming plumbing baseball chess gardening algebra hockey baking cooking tennis)
-#Create some users
 
+skills = %w(programming plumbing baseball chess gardening algebra hockey baking cooking tennis)
+
+#Create some users
 User.create(
     username: 'Logan',
     email: 'logan@gmail.com',
@@ -31,13 +32,25 @@ skills.each do |skill|
   skill_list << Skill.create(name: skill)
 end
 
-#Give some users teachables
-(NUMBER_OF_USERS * 2).times do
-  Teachable.create(user: users_list.sample, skill: skill_list.sample)
-end
+User.all.each do |user|
+  teach = []
+  learn = []
 
-#give some users learnables
+  skill_list.each do |skill|
+    x = rand(1..3)
+    if x == 1
+      teach << skill
+    elsif x == 2
+      learn << skill
+    end
+  end
 
-(NUMBER_OF_USERS * 2).times do
-  Learnable.create(user: users_list.sample, skill: skill_list.sample)
+  teach.each do |skill|
+    Teachable.create(user: user, skill: skill)
+  end
+
+  learn.each do |skill|
+    Learnable.create(user: user, skill: skill)
+  end
+
 end
