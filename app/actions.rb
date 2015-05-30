@@ -1,10 +1,10 @@
 # Homepage (Root path)
 get '/' do
-  # if logged_in?
-  #   erb :'dashboard/show'
-  # else
+  if logged_in?
+    redirect '/dashboard'
+  else
     erb :index
-  # end
+  end
 end
 
 get '/users/new' do
@@ -85,8 +85,7 @@ get '/users/:id' do
 end
 
 get '/dashboard' do
-  if current_user
-    @current_user = current_user 
+  if logged_in?
     @user = current_user
     erb :'dashboard/show'
   else
