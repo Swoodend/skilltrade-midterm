@@ -74,7 +74,7 @@ get '/users' do
     if @skills.empty?
       @not_found_message = @skills
     else
-      skill_ids = skills.map &:id
+      skill_ids = @skills.map &:id
       user_ids = Relationship.where(skill_id: skill_ids).map &:user_id
       @users = []
       user_ids.each do |id|
