@@ -2,7 +2,7 @@ require 'faker'
 #Configuration for seed file
 
 NUMBER_OF_USERS = 30
-skills = %w(programming plumbing baseball chess gardening linear\ algebra hockey)
+skills = %w(programming plumbing baseball chess gardening linear\quit algebra hockey)
 #Create some users
 
 User.create(

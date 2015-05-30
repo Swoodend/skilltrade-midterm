@@ -43,7 +43,7 @@
 <% @user.find_my_students.each do |student| %>
   <p> Student: <a href="/users/<%= student.id %>"> <%= student.username %> </a>
   who wants to learn 
-  <%= ((student.learnable_skills.map &:name) & (@user.teachable_skills.map &:name))%>
+  <%= ((student.learnable_skills.map &:name) & (@user.teachable_skills.map &:name)).join(" ") %>
   </p>
   </br>
 <% end %>
@@ -52,7 +52,7 @@
 <% @user.find_my_teachers.each do |teacher| %>
   <p> Teacher: <a href="/users/<%= teacher.id %>"> <%= teacher.username %> </a>
   who can help you with
-  <%= ((teacher.teachable_skills.map &:name) & (@user.learnable_skills.map &:name))%>
+  <%= ((teacher.teachable_skills.map &:name) & (@user.learnable_skills.map &:name)).join(" ") %>
   </p>
   </br>
 <% end %>
