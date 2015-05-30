@@ -65,16 +65,23 @@ get '/profile' do
 end
 
 get '/users' do
+  search = "%" + params[:query] + "%" if params[:query]
   if params[:search_by] == "username"
-    @users = User.where(username: params[:query])
+    @users = User.where("username LIKE ?", search)
+    @not_found_message = @users if @users.empty?
   elsif params[:search_by] == "skill"
-    id_of_skill = Skill.where(name: params[:query])[0].id
-    user_ids = Relationship.where(skill_id: id_of_skill).map &:user_id
-    @users = []
-    user_ids.each do |id|
-      @users << User.find(id)
+    @skills = Skill.where("name LIKE ?", search)
+    if @skills.empty?
+      @not_found_message = @skills
+    else
+      skill_ids = @skills.map &:id
+      user_ids = Relationship.where(skill_id: skill_ids).map &:user_id
+      @users = []
+      user_ids.each do |id|
+        @users << User.find(id)
+      end
+      @users
     end
-    @users
   end
   erb :'/users/index'
 end

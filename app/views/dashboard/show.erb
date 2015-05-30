@@ -17,58 +17,50 @@
   <li class="list-group-item">
     <div class="row">
       <div class="col-md-1">
-      <strong>You want to teach: </strong>
       </div>
-      <div class="col-md-2">
-        <div class="">
-         
-         <span class="label label-success"><%= (@user.teachable_skills.map &:name).join(" ") %></span>
-        </div>
-        <div>
-         <strong>You want to learn: </strong>
-         <span class="label label-success"><%= (@user.learnable_skills.map &:name).join(" ") %></span>
+        <div class="col-md-11">
+          <div class="">
+          <p><strong>You want to teach: </strong>  
+          
+          <%(@user.teachable_skills.map &:name).each do |skill|%>
+            <span class="label label-info"><%= skill.capitalize %></span>
+          <% end %></p></div>
+
+          <p><strong>You want to learn: </strong>
+             
+          <%(@user.learnable_skills.map &:name).each do |skill| %></span>
+            <span class="label label-success"><%= skill.capitalize %></span>
+          <% end %></p></div>
         </div>
       </div>
     </div>
   </li>
 </ul>
-
-
-  <h3> And you want to learn: <%= @user.learnable_skills.map &:name %></h3>
-<div>
-
 </br>
+<ul>
+  <h3> People you may want meet! </h3>
+  <% @user.find_people_I_want_to_meet.each do |match| %>
+  <li class="list-group-item">
+    <div class="row">
+    
+      <div class="col-md-1">
+        <A HREF="<%= match.user_img %>"><IMG HEIGHT=75 WIDTH=75 SRC="<%= match.user_img %>"></IMG></A>
+      </div> 
 
+      <div class="col-md-11">
+        <strong><a href="/users/<%= match.id %>"><%= match.username %> </a></strong></br>
+        wants to learn 
+        <% @user.i_teach_they_learn(match).each do |teach| %>
+          <span class="label label-info"><%= teach.capitalize %></span>
+        <% end %>
+         
+        </br>if you want to teach
+        <% @user.i_learn_they_teach(match).each do |learn| %>
+          <span class="label label-success"><%= learn.capitalize %></span>
+        <% end %>
+      </div>          
+    </div>
+  </li>
+  <% end %>
+</ul>
 
-<h3> People you may want meet! </h3>
-<% @user.find_people_I_want_to_meet.each do |match| %>
-  <div>
-    <A HREF="<%= match.user_img %>"><IMG HEIGHT=50 WIDTH=50 SRC="<%= match.user_img %>"></IMG></A> 
-    <a href="/users/<%= match.id %>"><%= match.username %> </a> 
-      wants to learn 
-      <%= @user.i_teach_they_learn(match).join(' ') %> 
-      from you
-      and you can teach him
-      <%= @user.i_learn_they_teach(match).join(' ') %>
-  </div>
-  </br>
-<% end %>
-  </br>
-
-<h3> People looking for your skills </h3>
-<% @user.find_my_students.each do |student| %>
-  <p> Student: <a href="/users/<%= student.id %>"> <%= student.username %> </a>
-  who wants to learn 
-  <%= ((student.learnable_skills.map &:name) & (@user.teachable_skills.map &:name)).join(" ") %>
-  </p>
-  </br>
-<% end %>
-
-<h3> People who can help you learn</h3>
-<% @user.find_my_teachers.each do |teacher| %>
-  <p> Teacher: <a href="/users/<%= teacher.id %>"> <%= teacher.username %> </a>
-  who can help you with
-  <%= ((teacher.teachable_skills.map &:name) & (@user.learnable_skills.map &:name)).join(" ") %>
-  </p>
-  </br>
-<% end %>
