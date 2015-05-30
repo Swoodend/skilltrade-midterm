@@ -2,7 +2,6 @@ require 'rake'
 require "sinatra/activerecord/rake"
 require 'active_record'
 require ::File.expand_path('../config/environment', __FILE__)
-require "./db/seed/users_importer"
 
 Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
