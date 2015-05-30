@@ -1,10 +1,10 @@
 # Homepage (Root path)
 get '/' do
-  # if logged_in?
-  #   erb :'dashboard/show'
-  # else
+  if logged_in?
+    erb :'dashboard/show'
+  else
     erb :index
-  # end
+  end
 end
 
 get '/users/new' do
@@ -64,7 +64,7 @@ get '/profile' do
   erb :'users/profile'
 end
 
-get '/users/index' do
+get '/users' do
   if params[:search_by] == "username"
     @users = User.where(username: params[:query])
   elsif params[:search_by] == "skill"
