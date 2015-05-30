@@ -39,6 +39,22 @@
 
 </br>
 
+
+<h3> People you may want meet! </h3>
+<% @user.find_people_I_want_to_meet.each do |match| %>
+  <div>
+    <A HREF="<%= match.user_img %>"><IMG HEIGHT=50 WIDTH=50 SRC="<%= match.user_img %>"></IMG></A> 
+    <a href="/users/<%= match.id %>"><%= match.username %> </a> 
+      wants to learn 
+      <%= @user.i_teach_they_learn(match).join(' ') %> 
+      from you
+      and you can teach him
+      <%= @user.i_learn_they_teach(match).join(' ') %>
+  </div>
+  </br>
+<% end %>
+  </br>
+
 <h3> People looking for your skills </h3>
 <% @user.find_my_students.each do |student| %>
   <p> Student: <a href="/users/<%= student.id %>"> <%= student.username %> </a>
