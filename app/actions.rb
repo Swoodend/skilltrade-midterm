@@ -64,7 +64,7 @@ get '/profile' do
   erb :'users/profile'
 end
 
-get '/users/index' do
+get '/users' do
   if params[:search_by] == "username"
     @users = User.where(username: params[:query])
   elsif params[:search_by] == "skill"
