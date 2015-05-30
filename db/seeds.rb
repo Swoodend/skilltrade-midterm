@@ -37,10 +37,10 @@ User.all.each do |user|
   learn = []
 
   skill_list.each do |skill|
-    x = rand(1..3)
-    if x == 1
+    x = rand(1..8)
+    if x == 1 || x == 2
       teach << skill
-    elsif x == 2
+    elsif x == 3 || x == 4 || x == 5
       learn << skill
     end
   end
