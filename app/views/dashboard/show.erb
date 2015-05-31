@@ -24,8 +24,8 @@
           <%(@user.teachable_skills.map &:name).each do |skill|%>
             <span class="label label-info"><%= skill.capitalize %></span>
           <% end %>
-          </p></div>
-
+          </p>
+          <a class="btn btn-primary" style ="float: right" href="/dashboard/edit" role="button">Edit Skills</a></div>
           <p><strong>You want to learn: </strong>
              
           <%(@user.learnable_skills.map &:name).each do |skill| %></span>

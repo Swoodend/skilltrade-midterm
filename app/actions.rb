@@ -100,3 +100,30 @@ get '/dashboard' do
   end
 end
 
+
+get '/dashboard/edit' do
+  if logged_in?
+    @user = current_user
+    erb :'dashboard/edit'
+  else
+    redirect 'session/new'
+  end
+end
+
+post '/dashboard/edit' do
+  
+  if logged_in?
+    @user = current_user
+  else
+    redirect 'session/new'
+  end
+  
+  @user.update(
+     username: params[:username],
+     email: params[:email],
+     password: params[:password]
+     ) 
+  redirect '/dashboard'
+end
+
+
