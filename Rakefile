@@ -22,7 +22,6 @@ task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
 
-
 desc 'delete/create/migrate the database'
 task 'db:empty' do
   rm_f 'db/db.sqlite3'
