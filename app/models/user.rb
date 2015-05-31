@@ -42,5 +42,20 @@ class User < ActiveRecord::Base
     find_my_teachers & find_my_students
   end
 
+  # def 3_way_matches
+  #   my_teachers = find_my_teachers
+  #   my_students = find_my_students
+
+  #   teachers_of_my_teachers = []
+
+
+  #   my_teachers.each do |teacher|
+  #     teacher.find_my_teachers
+
+  #   end
+
+  #     # do my stuents have any students that are my teacherss. or same thing, does my teacher have any teachers who are my students
+  #   end
+
 end
 
