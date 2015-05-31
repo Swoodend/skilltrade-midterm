@@ -21,7 +21,7 @@
       </div>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <p class="navbar-text">
+          <p style='color: yellow'class="navbar-text">
             Logged in as: <%= current_user.email %>
           </p>
           <li>
@@ -33,7 +33,7 @@
           </li>
         <% else %>
           <li>
-            <button type="button" class="btn btn-success navbar-btn">
+            <button id='log-color' type="button" class="btn btn-success navbar-btn">
               <a href="/session/new">
                 Login
              </a>

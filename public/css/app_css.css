@@ -23,6 +23,9 @@ img {
   text-decoration: none
   
 }
+#log-color{
+  background-color: white; 
+}
 
 .center {
   text-align: center;
