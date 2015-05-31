@@ -23,3 +23,15 @@ img {
   text-decoration: none
   
 }
+
+.center {
+  text-align: center;
+}
+
+.hands {
+  float: left;
+}
+
+.navbar{
+    background-color: #6600CC;
+  }
