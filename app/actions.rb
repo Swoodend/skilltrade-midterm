@@ -100,7 +100,6 @@ get '/dashboard' do
   end
 end
 
-
 get '/dashboard/edit' do
   if logged_in?
     @user = current_user
@@ -119,10 +118,18 @@ post '/dashboard/edit' do
      ) 
   if params[:add_teachable_skill] != "" && skill = Skill.find_by(name: params[:add_teachable_skill])
     Teachable.create(user: @user, skill: skill)
+  elsif params[:add_teachable_skill] != ""
+    skill = Skill.create(name: params[:add_teachable_skill])
+    Teachable.create(user: @user, skill: skill)
   end
+
   if params[:add_learnable_skill] != "" && skill = Skill.find_by(name: params[:add_learnable_skill])
     Learnable.create(user: @user, skill: skill)
+  elsif params[:add_learnable_skill] != ""
+    skill = Skill.create(name: params[:add_learnable_skill])
+    Learnable.create(user: @user, skill: skill)
   end
+    
   redirect '/dashboard/edit'
 end
 
