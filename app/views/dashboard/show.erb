@@ -35,32 +35,35 @@
       </div>
     </div>
   </li>
+
 </ul>
 </br>
-<ul>
-  <h3> People you may want meet! </h3>
-  <% @user.find_people_I_want_to_meet.each do |match| %>
-  <li class="list-group-item">
-    <div class="row">
-    
-      <div class="col-md-1">
-        <A HREF="<%= match.user_img %>"><IMG HEIGHT=75 WIDTH=75 SRC="<%= match.user_img %>"></IMG></A>
-      </div> 
 
-      <div class="col-md-11">
-        <strong><a href="/users/<%= match.id %>"><%= match.username %> </a></strong></br>
-        wants to learn 
-        <% @user.i_teach_they_learn(match).each do |teach| %>
-          <span class="label label-info"><%= teach.capitalize %></span>
-        <% end %>
-         
-        </br>if you want to teach
-        <% @user.i_learn_they_teach(match).each do |learn| %>
-          <span class="label label-success"><%= learn.capitalize %></span>
-        <% end %>
-      </div>          
-    </div>
-  </li>
-  <% end %>
-</ul>
+ <ul>
+    <h3> People you may want meet! </h3>
+    <% @user.find_people_I_want_to_meet.each do |match| %>
+    <li class="list-group-item">
+      <div class="row">
+      
+        <div class="col-md-1">
+          <a href="<%= match.user_img %>"><img src="<%= match.user_img %>"></img></a>
+        </div> 
+
+        <div class="col-md-11">
+          <strong><a href="/users/<%= match.id %>"><%= match.username %> </a></strong></br>
+          wants to learn 
+          <% @user.i_teach_they_learn(match).each do |teach| %>
+            <span class="label label-info"><%= teach.capitalize %></span>
+          <% end %>
+           
+          </br>if you want to teach
+          <% @user.i_learn_they_teach(match).each do |learn| %>
+            <span class="label label-success"><%= learn.capitalize %></span>
+          <% end %>
+        </div>          
+      </div>
+    </li>
+    <% end %>
+  </ul> 
+</div>
 

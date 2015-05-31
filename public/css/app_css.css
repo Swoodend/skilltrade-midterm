@@ -32,6 +32,13 @@ img {
   float: left;
 }
 
-.navbar{
+.navbar {
     background-color: #6600CC;
+  }
+#bulb {
+    color: yellow;
+  }
+
+  #nav-title {
+    color: yellow;
   }
