@@ -54,7 +54,7 @@
           <span class="label label-info"><%= teach.capitalize %></span>
         <% end %>
          
-        </br>if you want to teach
+        </br>and can teach
         <% @user.i_learn_they_teach(match).each do |learn| %>
           <span class="label label-success"><%= learn.capitalize %></span>
         <% end %>
