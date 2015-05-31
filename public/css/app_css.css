@@ -6,15 +6,15 @@ img {
 
 }
 
-#search-criteria {
-
-  margin-left: 38.33333%;
-
-}
-
 #no-result-message {
 
   margin-left: -22px
+
+}
+
+#search-criteria {
+
+  margin-left: 38.33333%;
 
 }
 
@@ -22,4 +22,20 @@ img {
 
   text-decoration: none
   
+}
+
+#navbar_button:hover {
+  color: #FF994As;  
+}
+
+#homepage_button {
+  background-color: #FF994A;
+  border-color: #FF994A;
+  color: #FFF;
+  text-decoration: none;
+
+}
+
+#homepage_button:hover {
+  color: #225378;  
 }
