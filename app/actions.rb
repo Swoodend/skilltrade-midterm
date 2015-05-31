@@ -100,7 +100,6 @@ get '/dashboard' do
   end
 end
 
-
 get '/dashboard/edit' do
   if logged_in?
     @user = current_user
@@ -111,13 +110,7 @@ get '/dashboard/edit' do
 end
 
 post '/dashboard/edit' do
-  
-  if logged_in?
-    @user = current_user
-  else
-    redirect 'session/new'
-  end
-  
+  @user = current_user
   @user.update(
      username: params[:username],
      email: params[:email],
@@ -125,11 +118,31 @@ post '/dashboard/edit' do
      ) 
   if params[:add_teachable_skill] != "" && skill = Skill.find_by(name: params[:add_teachable_skill])
     Teachable.create(user: @user, skill: skill)
+  elsif params[:add_teachable_skill] != ""
+    skill = Skill.create(name: params[:add_teachable_skill])
+    Teachable.create(user: @user, skill: skill)
   end
+
   if params[:add_learnable_skill] != "" && skill = Skill.find_by(name: params[:add_learnable_skill])
     Learnable.create(user: @user, skill: skill)
+  elsif params[:add_learnable_skill] != ""
+    skill = Skill.create(name: params[:add_learnable_skill])
+    Learnable.create(user: @user, skill: skill)
   end
+    
   redirect '/dashboard/edit'
 end
 
+get '/dashboard/delete_teachable/:skill_name' do
+  @user = current_user
+  skill = Skill.find_by(name: params[:skill_name]).id
+  Teachable.find_by(skill_id: skill, user_id: @user.id).destroy
+  redirect '/dashboard/edit'
+end
 
+get '/dashboard/delete_learnable/:skill_name' do
+  @user = current_user
+  skill = Skill.find_by(name: params[:skill_name]).id
+  Learnable.find_by(skill_id: skill, user_id: @user.id).destroy
+  redirect '/dashboard/edit'
+end
