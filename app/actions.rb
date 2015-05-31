@@ -100,3 +100,36 @@ get '/dashboard' do
   end
 end
 
+
+get '/dashboard/edit' do
+  if logged_in?
+    @user = current_user
+    erb :'dashboard/edit'
+  else
+    redirect 'session/new'
+  end
+end
+
+post '/dashboard/edit' do
+  
+  if logged_in?
+    @user = current_user
+  else
+    redirect 'session/new'
+  end
+  
+  @user.update(
+     username: params[:username],
+     email: params[:email],
+     password: params[:password]
+     ) 
+  if params[:add_teachable_skill] != "" && skill = Skill.find_by(name: params[:add_teachable_skill])
+    Teachable.create(user: @user, skill: skill)
+  end
+  if params[:add_learnable_skill] != "" && skill = Skill.find_by(name: params[:add_learnable_skill])
+    Learnable.create(user: @user, skill: skill)
+  end
+  redirect '/dashboard/edit'
+end
+
+
