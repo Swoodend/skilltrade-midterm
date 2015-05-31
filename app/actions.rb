@@ -123,7 +123,13 @@ post '/dashboard/edit' do
      email: params[:email],
      password: params[:password]
      ) 
-  redirect '/dashboard'
+  if params[:add_teachable_skill] != "" && skill = Skill.find_by(name: params[:add_teachable_skill])
+    Teachable.create(user: @user, skill: skill)
+  end
+  if params[:add_learnable_skill] != "" && skill = Skill.find_by(name: params[:add_learnable_skill])
+    Learnable.create(user: @user, skill: skill)
+  end
+  redirect '/dashboard/edit'
 end
 
 
