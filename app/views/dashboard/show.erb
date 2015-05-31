@@ -1,5 +1,5 @@
 <div>
-  <a class="btn btn-primary" style ="float: right" href="/users" role="button">Search Page</a>
+  <a class="btn btn-primary" style ="float: right" href="/users" role="button">Browse Users <i class="glyphicon glyphicon-search"></i></a>
   <h1> <strong> Welcome <%= @user.username %> to your awesome dashboard </strong> </h1>
 </div>
 
@@ -21,10 +21,10 @@
         <div class="col-md-11">
           <div class="">
           <p><strong>You want to teach: </strong>  
-          
           <%(@user.teachable_skills.map &:name).each do |skill|%>
             <span class="label label-info"><%= skill.capitalize %></span>
-          <% end %></p></div>
+          <% end %>
+          </p></div>
 
           <p><strong>You want to learn: </strong>
              
