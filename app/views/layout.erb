@@ -3,9 +3,11 @@
 <head>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/app_css.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>SkillSwapr</title>
 </head>
 <body>
@@ -24,6 +26,12 @@
           </p>
           <li>
             <button type="button" class="btn btn-default navbar-btn">
+              <a href="/dashboard">
+                <i class="glyphicon glyphicon-dashboard"></i>
+                Dashboard
+             </a>
+            </button>
+            <button type="button" class="btn btn-default navbar-btn">
              <a href="/logout">
                 Logout
               </a>
@@ -41,6 +49,8 @@
       </ul>    
     </div>
   </nav>
-  <%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

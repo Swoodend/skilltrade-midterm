@@ -1,11 +1,10 @@
-require 'byebug'
 # Homepage (Root path)
 get '/' do
-  # if logged_in?
-  #   erb :'dashboard/show'
-  # else
+  if logged_in?
+    redirect '/dashboard'
+  else
     erb :index
-  # end
+  end
 end
 
 get '/users/new' do
@@ -65,18 +64,35 @@ get '/profile' do
   erb :'users/profile'
 end
 
-get '/users/index' do
-  @users = User.where(username: params[:query])
+get '/users' do
+  search = "%" + params[:query] + "%" if params[:query]
+  if params[:search_by] == "username"
+    @users = User.where("username LIKE ?", search)
+    @not_found_message = @users if @users.empty?
+  elsif params[:search_by] == "skill"
+    @skills = Skill.where("name LIKE ?", search)
+    if @skills.empty?
+      @not_found_message = @skills
+    else
+      skill_ids = @skills.map &:id
+      user_ids = Relationship.where(skill_id: skill_ids).map &:user_id
+      @users = []
+      user_ids.each do |id|
+        @users << User.find(id)
+      end
+      @users
+    end
+  end
   erb :'/users/index'
 end
 
 get '/users/:id' do
-  @user = User.find_by(id: params[:id])
+  @user = User.find(params[:id])
   erb :'users/show'
 end
 
 get '/dashboard' do
-  if current_user
+  if logged_in?
     @user = current_user
     erb :'dashboard/show'
   else
@@ -84,3 +100,49 @@ get '/dashboard' do
   end
 end
 
+get '/dashboard/edit' do
+  if logged_in?
+    @user = current_user
+    erb :'dashboard/edit'
+  else
+    redirect 'session/new'
+  end
+end
+
+post '/dashboard/edit' do
+  @user = current_user
+  @user.update(
+     username: params[:username],
+     email: params[:email],
+     password: params[:password]
+     ) 
+  if params[:add_teachable_skill] != "" && skill = Skill.find_by(name: params[:add_teachable_skill])
+    Teachable.create(user: @user, skill: skill)
+  elsif params[:add_teachable_skill] != ""
+    skill = Skill.create(name: params[:add_teachable_skill])
+    Teachable.create(user: @user, skill: skill)
+  end
+
+  if params[:add_learnable_skill] != "" && skill = Skill.find_by(name: params[:add_learnable_skill])
+    Learnable.create(user: @user, skill: skill)
+  elsif params[:add_learnable_skill] != ""
+    skill = Skill.create(name: params[:add_learnable_skill])
+    Learnable.create(user: @user, skill: skill)
+  end
+    
+  redirect '/dashboard/edit'
+end
+
+get '/dashboard/delete_teachable/:skill_name' do
+  @user = current_user
+  skill = Skill.find_by(name: params[:skill_name]).id
+  Teachable.find_by(skill_id: skill, user_id: @user.id).destroy
+  redirect '/dashboard/edit'
+end
+
+get '/dashboard/delete_learnable/:skill_name' do
+  @user = current_user
+  skill = Skill.find_by(name: params[:skill_name]).id
+  Learnable.find_by(skill_id: skill, user_id: @user.id).destroy
+  redirect '/dashboard/edit'
+end

@@ -1,41 +1,70 @@
-<form role='search' method='get'>
-  
-  <div align='center'>
-    
-    <input type='text' name='query' placeholder='Enter a skill to learn' size='45'>
-    <button type="button" class="btn btn-primary">Search</button>
-
+<form role="search" method="get">
+  <div class="form-group">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" name="query" placeholder="Search" >
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    </button>
   </div>
+    <div class="col-md-offset-4" id="search-criteria">
+      <div class="radio-inline">
+        <label>Search by: </label>
+      </div>
+      <div class="radio-inline">
+        <label>
+          <input type="radio" name="search_by" value="skill" checked="checked"> Skill
+        </label>  
+      </div>
+      <div class="radio-inline">  
+        <label>
+          <input type="radio" name="search_by" value="username"> Username
+        </label>
+      </div>
+    </div>
 
+  <% if params[:query]  %>
+      <% list = @users %>
+  <% else %>
+    <% list = User.all %>
+  <% end %>
+
+<% if @not_found_message %>
+<div class="col-md-offset-4" id="search-criteria">
+  <% if params[:search_by] == "username" %>
+    <p id="no-result-message">No user found with that name, please search again.</p>
+    
+  <% elsif params[:search_by] == "skill" %>
+    <p  id="no-result-message">No skill found with that name, please search again.</p>
+  <% end %>
+</div>
 </form>
 
-<div class="container">
-  <div class="row">
-    <h1> Users </h1>
-    </hr>
-    <div> 
-        <form class="navbar-form" role="search" method="get">
-          <div class="form-group">
-            <input type="text" class="form-control" name="query" value="<%= @search %>" placeholder="Search">
+<ul>
+<% else %>
+  <% list.each do |user| %>
+    <% teach_skills = user.teachable_skills.map &:name %>
+    <% learn_skills = user.learnable_skills.map &:name %>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-1">
+        <img id="" src='<%= user.user_img %>'/>
+        </div>
+        <div class="col-md-11">
+          <div class="">
+            <p><strong>Username: </strong><a href="/users/<%= user.id %>" target="_blank"><%= user.username %></a></p>
+            <p><strong>Learning: </strong><% learn_skills.sort.each do |skill| %>
+              <a id="skill_label" href="/users?query=<%= skill %>&search_by=skill"><span class="label label-success"><%= skill.capitalize %></span></a>
+            <% end %></a></p>
+            <p><strong>Teaching: </strong><% teach_skills.sort.each do |skill| %>
+              <a id="skill_label" href="/users?query=<%= skill %>&search_by=skill"><span class="label label-info"><%= skill.capitalize %></span></a>
+            <% end %></a></p>
           </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-    </div>
-    <ul class="list-group">
-        <% @users.all.each do |user| %>
-          <li class="list-group-item">
-            <div class="row">
-              <div class="col-sm-1">
-              </div>
-              <div class="col-sm-11">
-                <div class="">
-                  <p><strong>Username: </strong><a href="<%= user.id %>" target="_blank"><%= user.username %></a></p>
-                  <p><strong>Learnables: </strong><%= user.teachables %></a></p>
-                </div>
-              </div>
-            </div>              
-          </li>
-        <% end %>
-    </ul>
-  </div>
-</div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>
+</ul>

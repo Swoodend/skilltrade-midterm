@@ -1,0 +1,25 @@
+img {
+  
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+
+}
+
+#search-criteria {
+
+  margin-left: 38.33333%;
+
+}
+
+#no-result-message {
+
+  margin-left: -22px
+
+}
+
+#skill_label {
+
+  text-decoration: none
+  
+}
