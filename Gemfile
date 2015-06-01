@@ -18,3 +18,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'faker'
 end
+
+group :production do
+  gem 'pg'
+end
