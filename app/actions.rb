@@ -88,6 +88,7 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
+  @logged_in_user = current_user
   erb :'users/show'
 end
 
@@ -120,7 +121,6 @@ post '/dashboard/edit' do
      blurb: params[:blurb],
      show_my_contact_info: flag
      ) 
-  byebug
   if params[:add_teachable_skill] != "" && skill = Skill.find_by(name: params[:add_teachable_skill])
     Teachable.create(user: @user, skill: skill)
   elsif params[:add_teachable_skill] != ""
