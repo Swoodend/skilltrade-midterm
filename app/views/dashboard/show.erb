@@ -1,6 +1,14 @@
 <div>
-  <a class="btn btn-primary" style ="float: right" href="/users" role="button"><i class="glyphicon glyphicon-search"></i> Browse Users </a>
-  <h1> <strong> <i class="glyphicon glyphicon-dashboard"></i> Welcome <%= @user.username %> to your awesome dashboard </strong> </h1>
+  <div>
+  <a class="btn btn-primary" id="browse_button" style ="float: right" href="/users" role="button"><i class="glyphicon glyphicon-search"></i> Browse Users </a>
+  <br>
+    <a class="btn btn-primary" id="edit" href="/dashboard/edit" role="button">
+    <i class="glyphicon glyphicon-edit"></i> Edit Skills
+  </a>
+  </div>
+  <h1 id="welcome"> <strong> <i class="glyphicon glyphicon-dashboard"></i> Welcome <%= @user.username %> to your dashboard </strong> </h1>
+
+
 </div>
 
 <div>
@@ -20,17 +28,20 @@
       </div>
         <div class="col-md-11">
           <div class="">
-          <p><strong>You want to teach: </strong>  
-          <%(@user.teachable_skills.map &:name).each do |skill|%>
-            <span class="label label-info"><%= skill.capitalize %></span>
-          <% end %>
-          </p>
-          <a class="btn btn-primary" style ="float: right" href="/dashboard/edit" role="button"> <i class="glyphicon glyphicon-edit"></i> Edit Skills</a></div>
-          <p><strong>You want to learn: </strong>
-             
-          <%(@user.learnable_skills.map &:name).each do |skill| %></span>
-            <span class="label label-success"><%= skill.capitalize %></span>
-          <% end %></p></div>
+            <p id="dash_skill">
+              <strong>You want to teach: </strong>  
+                <%(@user.teachable_skills.map &:name).each do |skill|%>
+                <a id="skill_label" href="/users?query=<%= skill %>&search_by=skill"><span class="label label-info"><%= skill.capitalize %></span></a>
+                <% end %>
+            </p>
+
+            <p id="dash_skill">
+              <strong>You want to learn: </strong>  
+                <%(@user.learnable_skills.map &:name).each do |skill| %>
+                <a id="skill_label" href="/users?query=<%= skill %>&search_by=skill"><span class="label label-success"><%= skill.capitalize %></span></a>
+                <% end %>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -38,26 +49,28 @@
 </ul>
 </br>
 <ul>
-  <h3> People you may want meet! </h3>
+  <h3 id="people"> People you may want meet! </h3>
   <% @user.find_people_I_want_to_meet.each do |match| %>
   <li class="list-group-item">
     <div class="row">
-    
-      <div class="col-md-1">
-        <A HREF="<%= match.user_img %>"><IMG HEIGHT=75 WIDTH=75 SRC="<%= match.user_img %>"></IMG></A>
-      </div> 
-
-      <div class="col-md-11">
+    <div class="col-md-1">
+      <a  HREF="<%= match.user_img %>">
+        <IMG id="match_img" HEIGHT=75 WIDTH=75 SRC="<%= match.user_img%>">   
+      </a>
+    </div>
+    <div class="col-md-12">
+      <div id="user_match">
         <strong><a href="/users/<%= match.id %>"><%= match.username %> </a></strong></br>
-        wants to learn 
-        <% @user.i_teach_they_learn(match).each do |teach| %>
-          <span class="label label-info"><%= teach.capitalize %></span>
-        <% end %>
-         
-        </br>and can teach
-        <% @user.i_learn_they_teach(match).each do |learn| %>
-          <span class="label label-success"><%= learn.capitalize %></span>
-        <% end %>
+          Wants to learn 
+          <% @user.i_teach_they_learn(match).each do |teach| %>
+            <span class="label label-info"><%= teach.capitalize %></span>
+          <% end %>
+           
+          </br>And can teach
+          <% @user.i_learn_they_teach(match).each do |learn| %>
+            <span class="label label-success"><%= learn.capitalize %></span>
+          <% end %>
+        </div>
       </div>          
     </div>
   </li>

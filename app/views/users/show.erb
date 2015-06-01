@@ -2,25 +2,29 @@
 
 <div class='col-sm-4'>
     <h1><%=@user.username%>'s Profile</h1>
-
     <img id="" src='<%= @user.user_img %>'/>
-    <h3>About</h3>
-    <p>blurb about <%=@user.username%> goes here</p>
+    <h3 id="contact">Contact</h3>
+    <p>(434) 434-4343</p>
   </div>
 
-  <div class='col-sm-8'>
-    <h2><%= @user.username %> wants to learn</h2>
-    <ul>
+  <div class='col-sm-8' id="show_user_head">
+    <h2><%= @user.username %> wants to learn:</h2>
+    <p>
       <% @user.learnable_skills.each{|skill| %>
-      <li><%= skill.name %></li>
+      <li id="show_text"><%= skill.name %></li>
       <% } %>
-    </ul>
+    </p>
 
-    <h2><%= @user.username %> wants to teach</h2>
-    <ul>
+    <h2><%= @user.username %> wants to teach:</h2>
+    <p>
       <% @user.teachable_skills.each{|skill| %>
-      <li> <%= skill.name%></li>
+      <li id="show_text"> <%= skill.name%></li>
       <% } %>
-    </ul>
+    </p>
+
+    <h3 id="about">About</h3>
+    <p id="show_text">Suspendisse nec feugiat erat, et consequat neque. Sed sagittis volutpat diam eget elementum. Vivamus aliquet sed dolor a vestibulum. Curabitur ultrices gravida ipsum eu posuere. Integer porttitor turpis mattis tempor accumsan. Vestibulum magna erat, dignissim vel vehicula vitae, fringilla non quam. Etiam sed ante lectus. Maecenas efficitur urna eu maximus pretium.</p>
+
   </div>
+
 </div>
