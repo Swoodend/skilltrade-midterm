@@ -111,11 +111,16 @@ end
 
 post '/dashboard/edit' do
   @user = current_user
+  flag = false
+  flag = true if params[:show_info] == "checked"
   @user.update(
      username: params[:username],
      email: params[:email],
-     password: params[:password]
+     password: params[:password],
+     blurb: params[:blurb],
+     show_my_contact_info: flag
      ) 
+  byebug
   if params[:add_teachable_skill] != "" && skill = Skill.find_by(name: params[:add_teachable_skill])
     Teachable.create(user: @user, skill: skill)
   elsif params[:add_teachable_skill] != ""
