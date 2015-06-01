@@ -17,6 +17,18 @@ img {
 
 }
 
+#user_image {
+
+  margin-left: 27em;
+
+}
+
+#logout_login {
+  
+  margin-top: 19px;
+
+}
+
 #search-criteria {
 
   margin-left: -1.66667%;
@@ -98,5 +110,33 @@ header {
 #user-image {
 
   image-res
+
+}
+
+#user_info {
+
+  margin-left: -13em;
+
+  margin-top: 2em;
+
+}
+
+#skill {
+
+  margin-left: 2em;
+
+}
+
+#text {
+
+  text-align: left;
+
+  margin-left: 26em;
+
+}
+
+#user_list {
+
+  background-color: #225378;
 
 }
