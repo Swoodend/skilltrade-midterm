@@ -1,11 +1,11 @@
-<form role="search" method="get">
+<form role="search" method="get" id="user_list">
   <div class="form-group">
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
       <input type="text" class="form-control" name="query" placeholder="Search" >
     </div>
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" id="search_button" class="btn btn-primary">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
     </button>
   </div>
@@ -47,18 +47,18 @@
   <% list.each do |user| %>
     <% teach_skills = user.teachable_skills.map &:name %>
     <% learn_skills = user.learnable_skills.map &:name %>
-    <li class="list-group-item">
+    <li class="list-group-item" id="user">
       <div class="row">
         <div class="col-md-1">
-        <img id="" src='<%= user.user_img %>'/>
+        <img id="user_image" src='<%= user.user_img %>'/>
         </div>
-        <div class="col-md-11">
-          <div class="">
-            <p><strong>Username: </strong><a href="/users/<%= user.id %>" target="_blank"><%= user.username %></a></p>
-            <p><strong>Learning: </strong><% learn_skills.sort.each do |skill| %>
+        <div class="col-md-14" id="user_info">
+          <div id="text">
+            <p id="text"><strong>Username: </strong><a href="/users/<%= user.id %>" target="_blank"><%= user.username %></a></p>
+            <p id="text"><strong>Learning: </strong><% learn_skills.sort.each do |skill| %>
               <a id="skill_label" href="/users?query=<%= skill %>&search_by=skill"><span class="label label-success"><%= skill.capitalize %></span></a>
             <% end %></a></p>
-            <p><strong>Teaching: </strong><% teach_skills.sort.each do |skill| %>
+            <p id="text"><strong>Teaching: </strong><% teach_skills.sort.each do |skill| %>
               <a id="skill_label" href="/users?query=<%= skill %>&search_by=skill"><span class="label label-info"><%= skill.capitalize %></span></a>
             <% end %></a></p>
           </div>

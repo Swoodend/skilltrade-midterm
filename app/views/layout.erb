@@ -12,7 +12,7 @@
 
   <title>SkillSwapr</title>
 </head>
-<body>
+<body id="body">
   <nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
@@ -27,13 +27,14 @@
             Logged in as: <%= current_user.email %>
           </p>
           <li>
-            <button type="button" class="btn btn-default navbar-btn">
+                      <button type="button" id="logout_login" class="btn btn-default navbar-btn">
               <a href="/dashboard">
                 <i class="glyphicon glyphicon-dashboard"></i>
                 Dashboard
              </a>
             </button>
-            <button type="button" class="btn btn-default navbar-btn">
+
+            <button type="button" class="btn btn-success navbar-btn" id="logout_login">
              <a href="/logout">
                 Logout
               </a>
@@ -41,11 +42,9 @@
           </li>
         <% else %>
           <li>
-            <button type="button" class="btn btn-success navbar-btn">
-              <a href="/session/new">
+            <a id="navbar_button" href="/session/new" >
                 Login
-             </a>
-            </button>
+            </a>
           </li>  
         <% end %>
       </ul>    
