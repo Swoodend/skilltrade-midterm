@@ -6,3 +6,5 @@
 /db/*.sqlite3-journal
 .DS_Store
 public/assets
+midterm-skillswapr.sublime-project
+midterm-skillswapr.sublime-workspace
