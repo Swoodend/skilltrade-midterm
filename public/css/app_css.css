@@ -18,6 +18,16 @@ img {
 
 }
 
+#iconss {
+
+  margin-top: 3em;
+}
+
+#join {
+
+  margin-left: 0px;
+}
+
 #user_image {
 
   margin-left: 23em;
@@ -30,6 +40,8 @@ img {
   
   margin-top: 19px;
 
+  background-color: #5CB85C;
+  border-color: #5CB85C;
 }
 
 #search-criteria {
@@ -169,6 +181,10 @@ header {
 
   margin-top: -6px;
 
+  background-color: #5CB85C;
+
+  border-color: #5CB85C;
+
 }
 
 #dash_skill {
@@ -185,6 +201,10 @@ header {
   
 
   margin-top: 13px;
+
+  background-color: #5CB85C;
+
+  border-color: #5CB85C;
 
 }
 
