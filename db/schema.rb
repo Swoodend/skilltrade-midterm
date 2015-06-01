@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                                                                                              null: false
     t.string   "user_img"
     t.string   "blurb",                default: "Eu putent convenire iudicabit est, illud everti bonorum usu ut. Nostro inermis eu mei, vel quodsi malorum salutatus id. Et tale possim eam, te illud facilisis disputando ius. Mel cu illud soleat, vix iusto mediocritatem id, ne vocent quaestio voluptaria mei. Primis prodesset delicatissimi at eum, lobortis torquatos mel an. Eu prima civibus neglegentur sed."
-    t.boolean  "show_my_contact_info", default: false
+    t.boolean  "show_my_contact_info", default: true
   end
 
 end
