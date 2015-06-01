@@ -1,0 +1,36 @@
+ <a class="btn btn-primary" style ="float: right" href="/dashboard" role="button">
+ <i class="glyphicon glyphicon-dashboard"></i> Dashboard</a> 
+ <h1> <strong> <i class="glyphicon glyphicon-edit"></i> Dashboard Editor</strong> </h1>
+ <form role="form" method="post" action="/dashboard/edit">
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" name="username" class="form-control" value="<%= @user.username %>">
+  </div>
+  <div>
+    <label for="email">Email address:</label>
+    <input type="email" class="form-control" name="email" value="<%= @user.email %>">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" name="password" value="<%= @user.password %>">
+  </div>
+  <div class="form-group">
+    <label>Your current teachables </label>
+    <%(@user.teachable_skills.map &:name).each do |skill|%>
+      <a href="/dashboard/delete_teachable/<%=skill%>" class="label label-info"><%= skill.capitalize %><i class="glyphicon glyphicon-remove"></i></a>
+    <% end %></br>
+    <label>Add a teachable</label>
+    <input type="text" name="add_teachable_skill" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Your current learnables</label>
+    <%(@user.learnable_skills.map &:name).each do |skill|%>
+      <a href="/dashboard/delete_learnable/<%=skill%>" class="label label-success"><%= skill.capitalize %><i class="glyphicon glyphicon-remove"></i></a>
+    <% end %></br>
+    <label>Add a learnable</label>
+    <input type="text" name="add_learnable_skill" class="form-control">
+  </div>
+  <div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
