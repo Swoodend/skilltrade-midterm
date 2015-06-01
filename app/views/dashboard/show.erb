@@ -1,36 +1,42 @@
-<div>
-  <a class="btn btn-primary" style ="float: right" href="/users" role="button"><i class="glyphicon glyphicon-search"></i> Browse Users </a>
-  <h1> <strong> <i class="glyphicon glyphicon-dashboard"></i> Welcome <%= @user.username %> to your awesome dashboard </strong> </h1>
+<!--
+<div class='row'>
+  <div class='col-md-'>
+    <a id='dropme' class="btn btn-primary" style ="float: right" href="/users" role="button"><i class="glyphicon glyphicon-search"></i> Browse Users </a>
+    <h1> <strong> <i class="glyphicon glyphicon-dashboard"></i> Welcome <%= @user.username %> to your awesome dashboard </strong> </h1>
+  </div>
 </div>
 
-<div>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <span class="badge"><%= User.count %></span>
-      Skillswapr members online
-    </li>
-  </ul>
+<div class='row'>
+  <dic class='col-md-12'>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <span class="badge"><%= User.count %></span>
+        Skillswapr members online
+      </li> 
+    </ul>
 </div>
 
 <div>
   
-  <li class="list-group-item">
+  
     <div class="row">
-      <div class="col-md-1">
-      </div>
-        <div class="col-md-11">
-          <div class="">
-          <p><strong>You want to teach: </strong>  
-          <%(@user.teachable_skills.map &:name).each do |skill|%>
-            <span class="label label-info"><%= skill.capitalize %></span>
-          <% end %>
-          </p>
-          <a class="btn btn-primary" style ="float: right" href="/dashboard/edit" role="button"> <i class="glyphicon glyphicon-edit"></i> Edit Skills</a></div>
-          <p><strong>You want to learn: </strong>
-             
-          <%(@user.learnable_skills.map &:name).each do |skill| %></span>
+      <li class="list-group-item">
+        <div class='col-md-12'>
+          <div>
+            <p><strong>You want to teach: </strong>  
+            <%(@user.teachable_skills.map &:name).each do |skill|%>
+              <span class="label label-info"><%= skill.capitalize %></span>
+            <% end %>
+            </p>
+          </div>
+          <div>
+            <a class="btn btn-primary" style ="float: right" href="/dashboard/edit" role="button"> <i class="glyphicon glyphicon-edit"></i> Edit Skills</a></div>
+            <p><strong>You want to learn: </strong>
+             <%(@user.learnable_skills.map &:name).each do |skill| %></span>
             <span class="label label-success"><%= skill.capitalize %></span>
-          <% end %></p></div>
+          <% end %></p>
+
+
         </div>
       </div>
     </div>
@@ -67,4 +73,126 @@
   </ul> 
 </div>
 
+-->
+
+</header>
+
+<div id="masthead">  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1><%=@user.username%>'s Dashboard
+          <p class="lead">Adjust your settings here, etc</p>
+        </h1>
+      </div>
+      <div class="col-md-5">
+         
+          <div class="row">
+            
+              <a id='dropme'class="btn btn-primary" style ="float: right" href="/dashboard/edit" role="button"> <i class="glyphicon glyphicon-edit"></i> Edit Skills</a></div>
+                
+          
+          </div>
+       
+      </div>
+    </div> 
+  </div><!-- /cont -->
+  
+ 
+</div>
+
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-12"> 
+      
+      <div class="panel">
+        <div class="panel-body">
+        
+          
+          <!--/stories-->
+      <div class="row">    
+            <br>
+            <div class="col-md-2 col-sm-3 text-center">
+              
+            </div>
+            <div class="col-md-10 col-sm-9">
+              <h3 class='moveleft'>You Want to Teach</h3>
+              <div class="row">
+                <div class="col-xs-9">
+                  <div>
+                      
+                    <%(@user.teachable_skills.map &:name).each do |skill|%>
+                    <span class="label label-info"><%= skill.capitalize %></span>
+                      <% end %>
+                  </div>
+                </div>
+                <div class="col-xs-3"></div>
+              </div>
+              <br><br>
+            </div>
+          </div>
+          <hr>
+                  
+      <div class="row">    
+            <br>
+            <div class="col-md-2 col-sm-3 text-center">
+            </div>
+            <div class="col-md-10 col-sm-9">
+              <h3 class='moveleft'>You Want To Learn</h3>
+              <div class="row">
+                <div class="col-xs-9">
+                  <%(@user.learnable_skills.map &:name).each do |skill| %></span>
+                  <span class="label label-success"><%= skill.capitalize %></span>
+                  <% end %></p>
+                
+                </div>
+                <div class="col-xs-3"></div>
+              </div>
+              <br><br>
+            </div>
+          </div>
+          <hr>
+
+
+                                                
+                                                                                
+<hr>
+
+<div class="container" id="footer">
+  <div class="row">
+    <div class="col col-sm-12">
+      
+      <h1>Follow Us</h1>
+      <div class="btn-group">
+       <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
+     <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+     <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="list-inline">
+          <li><i class="icon-facebook icon-2x"></i></li>
+          <li><i class="icon-twitter icon-2x"></i></li>
+          <li><i class="icon-google-plus icon-2x"></i></li>
+          <li><i class="icon-pinterest icon-2x"></i></li>
+        </ul>
+        
+      </div>
+      <div class="col-sm-6">
+          <p class="pull-right">Built with <i class="icon-heart-empty"></i> at <a href="http://www.bootply.com">Bootply</a></p>      
+      </div>
+    </div>
+  </div>
+</footer>
 

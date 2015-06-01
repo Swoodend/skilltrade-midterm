@@ -41,6 +41,18 @@ img {
 
 }
 
+#dropme {
+
+  margin-top: 26px;
+
+}
+
+.moveleft {
+
+  margin-right :44px;
+
+}
+
 .navbar {
     background-color: #6600CC;
   }
