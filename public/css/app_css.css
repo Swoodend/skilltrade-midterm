@@ -35,6 +35,12 @@ img {
   float: left;
 }
 
+.moveright {
+
+  margin-left: 25px;
+
+}
+
 .navbar {
     background-color: #6600CC;
   }
@@ -46,7 +52,9 @@ img {
 #bulb {
     color: yellow;
   }
-
+.nobullets{
+  list-style-type: none;
+}
   #nav-title {
     color: yellow;
   }

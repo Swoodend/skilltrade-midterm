@@ -1,3 +1,4 @@
+<!--
 <div class='row'>
 
 <div class='col-sm-4'>
@@ -24,3 +25,90 @@
     </ul>
   </div>
 </div>
+-->
+
+<div class="container target">
+    <div class="row">
+        <div class="col-sm-10">
+             <h1 class=""><%=@user.username%></h1>
+
+            <button type="button" class="btn btn-success">Send Me A Message</button>
+            
+            <br class="">
+        </div>
+        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="<%=@user.user_img%>"></a>
+
+        </div>
+    </div>
+    <br class="">
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> <%=@user.created_at.month%>/<%=@user.created_at.day%>/<%=@user.created_at.year%></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
+                   
+                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Occupation  : </strong></span> FOO</li>
+            </ul>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
+
+                </div>
+                <div class="panel-body"><a href="http://bootply.com" class="">foo.com</a>
+
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
+
+                </li>
+                
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Likes</strong></span> 13</li>
+                   
+                        <li class="list-group-item text-right"><span class="pull-left"><strong class="">Followers</strong></span> 78</li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-heading">Social Media</div>
+                <div class="panel-body">  <i class="fa fa-facebook fa-2x"></i>  <i class="fa fa-github fa-2x"></i> 
+                    <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>  <i class="fa fa-google-plus fa-2x"></i>
+
+                </div>
+            </div>
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9" style="">
+            <div class="panel panel-default">
+                <div class="panel-heading" contenteditable="false"><%=@user.username%>'s Bio</div>
+                <div class="panel-body" contenteditable="false">A long description about <%=@user.username%>.</div>
+            </div>
+            <div class="panel panel-default target">
+                <div class="panel-heading">Learning/Teaching</div>
+                <div class="panel-body">
+
+                    <h2 class='moveright'><%= @user.username %> wants to learn</h2>
+                    <ul class='nobullets'>
+                      <% @user.learnable_skills.each{|skill| %>
+                      <li><span class="label label-success"><%= skill.name %></span></li>
+                      <% } %>
+                    </ul>
+
+                    <h2 class='moveright'><%= @user.username %> wants to teach</h2>
+                    <ul class='nobullets'>
+                      <% @user.teachable_skills.each{|skill| %>
+                      <li> <span class="label label-info"><%= skill.name%></span></li>
+                      <% } %>
+                    </ul>
+                  </div>
+                
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Testimonials</div>
+                <div class="panel-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Perturbationes autem nulla naturae vi commoventur, omniaque ea sunt opiniones ac iudicia levitatis. Quod autem in homine </p>
+
+  </div>
+            </div>
+        </div>
+
+    </footer>
