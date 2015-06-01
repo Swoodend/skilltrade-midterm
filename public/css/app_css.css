@@ -6,6 +6,11 @@ img {
 
 }
 
+.credential_form {
+
+  margin-left: 45em;
+}
+
 #no-result-message {
 
   margin-left: -22px
@@ -14,7 +19,7 @@ img {
 
 #search-criteria {
 
-  margin-left: 38.33333%;
+  margin-left: -1.66667%;
 
 }
 
@@ -42,7 +47,15 @@ img {
 
 #body {
 
-  /*background-color: #48A888;*/
+   /*background-color: #white; */
+
+}
+
+#user {
+
+  background-color: #225378;
+
+  border-color: #225378;
 
 }
 
@@ -80,4 +93,10 @@ header {
     -webkit-transition: all ease .5s;
     -moz-transition: all ease .5s;
     transition: all ease .5s;
+}
+
+#user-image {
+
+  image-res
+
 }

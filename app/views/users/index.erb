@@ -48,10 +48,10 @@
   <% list.each do |user| %>
     <% teach_skills = user.teachable_skills.map &:name %>
     <% learn_skills = user.learnable_skills.map &:name %>
-    <li class="list-group-item">
+    <li class="list-group-item" id="user">
       <div class="row">
         <div class="col-md-1">
-        <img id="" src='<%= user.user_img %>'/>
+        <img id="user_image" src='<%= user.user_img %>'/>
         </div>
         <div class="col-md-11">
           <div class="">
