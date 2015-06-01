@@ -1,8 +1,8 @@
 <div>
   <div>
-  <a class="btn btn-primary" id="browse_button" style ="float: right" href="/users" role="button"><i class="glyphicon glyphicon-search"></i> Browse Users </a>
+  <a class="btn btn-success" id="browse_button" style ="float: right" href="/users" role="button"><i class="glyphicon glyphicon-search"></i> Browse Users </a>
   <br>
-    <a class="btn btn-primary" id="edit" href="/dashboard/edit" role="button">
+    <a class="btn btn-success" id="edit" href="/dashboard/edit" role="button">
     <i class="glyphicon glyphicon-edit"></i> Edit Skills
   </a>
   </div>
@@ -51,24 +51,24 @@
 <ul>
   <h3 id="people"> People you may want meet! </h3>
   <% @user.find_people_I_want_to_meet.each do |match| %>
-  <li class="list-group-item">
-    <div class="row">
+  <li class="list-group-item" id="user_match" >
+    <div class="row" >
     <div class="col-md-1">
       <a  HREF="<%= match.user_img %>">
-        <IMG id="match_img" HEIGHT=75 WIDTH=75 SRC="<%= match.user_img%>">   
+        <IMG id="match_img" HEIGHT=75 WIDTH=75 SRC="<%= match.user_img%>">   </IMG>
       </a>
     </div>
-    <div class="col-md-12">
-      <div id="user_match">
+    <div class="col-md-12" id="user_match_skills">
+      <div >
         <strong><a href="/users/<%= match.id %>"><%= match.username %> </a></strong></br>
           Wants to learn 
           <% @user.i_teach_they_learn(match).each do |teach| %>
-            <span class="label label-info"><%= teach.capitalize %></span>
+            <a id="skill_label" href="/users?query=<%= teach %>&search_by=skill"><span class="label label-info"><%= teach.capitalize %></span></a>
           <% end %>
            
           </br>And can teach
           <% @user.i_learn_they_teach(match).each do |learn| %>
-            <span class="label label-success"><%= learn.capitalize %></span>
+            <a id="skill_label" href="/users?query=<%= learn %>&search_by=skill"><span class="label label-success"><%= learn.capitalize %></span></a>
           <% end %>
         </div>
       </div>          
@@ -76,4 +76,5 @@
   </li>
   <% end %>
 </ul>
+</div>
 
